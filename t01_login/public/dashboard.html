@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Welcome, agent!</h2>
+    <p>Status: <script>document.write(sessionStorage.getItem('status'));</script></p>
+    <form action="/logout" method="POST">
+        <button type="submit">Log Out</button>
+    </form>
+    <script>
+        // Загрузка статуса из сессии
+        fetch('/session')
+            .then(res => res.json())
+            .then(data => {
+                if (data.user) {
+                    sessionStorage.setItem('status', data.user.status);
+                    document.querySelector('p').textContent = `Status: ${data.user.status}`;
+                }
+            });
+    </script>
+</body>
+</html>

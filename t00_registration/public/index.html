@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Registration</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Register New Agent</h1>
+  <form id="registration-form">
+    <input type="text" name="login" placeholder="Login" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <input type="password" name="confirmPassword" placeholder="Confirm Password" required />
+    <input type="text" name="fullName" placeholder="Full Name" required />
+    <input type="email" name="email" placeholder="Email Address" required />
+    <button type="submit">Register</button>
+    <div id="message"></div>
+  </form>
+  <script>
+    document.getElementById("registration-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        login: form.login.value,
+        password: form.password.value,
+        confirmPassword: form.confirmPassword.value,
+        fullName: form.fullName.value,
+        email: form.email.value
+      };
+
+      if (data.password !== data.confirmPassword) {
+        document.getElementById("message").innerText = "Passwords do not match.";
+        return;
+      }
+
+      const res = await fetch("/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+      document.getElementById("message").innerText = result.message;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "database": {
+    "filename": "./db.sqlite"
+  },
+  "session": {
+    "secret": "supersecret"
+  },
+  "port": 3000
+}

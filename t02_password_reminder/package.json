@@ -1,0 +1,15 @@
+{
+  "name": "t02_password_reminder",
+  "version": "1.0.0",
+  "description": "Password reminder system using nodemailer",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.4",
+    "nodemailer": "^6.9.8",
+    "sqlite3": "^5.1.6"
+  }
+}
